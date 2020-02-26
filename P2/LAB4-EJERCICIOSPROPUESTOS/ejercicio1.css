@@ -1,6 +1,37 @@
-.boton_calcu{
-    margin: 10px;
-    background-color: red;
+.digito{
+    margin: 20px;
+    background-color: lightgreen;
+    color: black;
+    font-size: 30px;
+    padding: 15px 32px;
+}
+
+.operador{
+    margin: 20px;
+    background-color: lightblue;
+    color: black;
+    font-size: 30px;
+    padding: 15px 36px;
+}
+
+.igual{
+    margin: 20px;
+    background-color: black;
     color: white;
-    font-size: 10px
+    font-size: 30px;
+    padding: 15px 32px;
+}
+
+.coma{
+    margin: 20px;
+    background-color: lightgreen;
+    color: black;
+    font-size: 30px;
+    padding: 15px 36px;
+}
+.display{
+    color: blue;
+    background-color: black;
+    font-size: 30px;
+    padding: 15px 36px;
 }
