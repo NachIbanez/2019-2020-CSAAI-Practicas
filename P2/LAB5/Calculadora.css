@@ -1,0 +1,34 @@
+.digito{
+    margin: 20px;
+    background-color: lightgreen;
+    color: black;
+    font-size: 30px;
+    padding: 15px 32px;
+    text-align: center;
+}
+
+.operador{
+    margin: 20px;
+    background-color: lightblue;
+    color: black;
+    font-size: 30px;
+    padding: 15px 36px;
+    text-align: center;
+}
+
+.igual{
+    margin: 20px;
+    background-color: black;
+    color: white;
+    font-size: 30px;
+    padding: 15px 32px;
+    text-align: center;
+}
+
+.display{
+    color: blue;
+    background-color: black;
+    font-size: 30px;
+    padding: 15px 36px;
+    text-align: center;
+}
