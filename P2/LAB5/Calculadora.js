@@ -11,24 +11,34 @@ operador = document.getElementsByClassName("operador")
 
 for (i=0; i<digito.length; i++) {
   digito[i].onclick = (ev) => {
-    number(digito[i].value)
+    number(ev.target.value)
+    console.log('ESTADO:' + estado)
   }
 }
 
   for (i=0; i<operador.length; i++) {
     operador[i].onclick = (ev) => {
-        display.innerHTML += ev.target.value;
+        operadores(ev.target.value)
+        console.log('ESTADO:' + estado)
     }
   }
 
 //-- Evaluar la expresion
 igual.onclick = () => {
-  display.innerHTML = eval(display.innerHTML);
+  if (estado == ESTADO.OP2 || estado == ESTADO.OP2_INIT ){
+    display.innerHTML = eval(display.innerHTML);
+    estado = ESTADO.INIT;
+    console.log('ESTADO:' + estado)
+
+  }
 }
 
 //-- Poner a cero la expresion
 clear.onclick = () => {
   display.innerHTML = "0";
+  estado = ESTADO.INIT;
+  console.log('ESTADO:' + estado)
+
 }
 
 //-- Estados de la calculadora
@@ -40,7 +50,7 @@ const ESTADO = {
   OP2: 4,
 }
 
-estado= ESTADO.INIT
+estado = ESTADO.INIT
 
 //-- Ha llegado un dígito
 function number(num)
@@ -50,12 +60,15 @@ function number(num)
     display.innerHTML = num;
     estado = ESTADO.OP1;
   } else if (estado == ESTADO.OP1) {
-    display.innerHTML = num;
+    display.innerHTML += num;
+  } else if (estado == ESTADO.OPERATION) {
+    display.innerHTML += num;
+    estado = ESTADO.OP2_INIT;
   } else if (estado == ESTADO.OP2_INIT) {
-    display.innerHTML = num;
+    display.innerHTML += num;
     estado = ESTADO.OP2;
   } else if (estado == ESTADO.OP2) {
-    display.innerHTML = num;
+    display.innerHTML += num;
   }
 }
 
@@ -64,16 +77,7 @@ function operadores(operador)
 {
   //-- Segun el estado hacemos una cosa u otra
   if (estado == ESTADO.OP1) {
-    display.innerHTML = operador;
-    estado = ESTADO.OP2_INIT;
-  }
-}
-
-//-- Ha llegado un igual
-function igual()
-{
-  //-- Segun el estado hacemos una cosa u otra
-  if (estado == ESTADO.OP2) {
-    display.innerHTML = eval(display.innerHTML);
+    display.innerHTML += operador;
+    estado = ESTADO.OPERATION;
   }
 }
