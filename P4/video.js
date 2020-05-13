@@ -20,7 +20,9 @@ video_pgm.width=600;  //-- Tamaño de la pantalla de video
 video_pgm.height=300;
 
 //----- Obtener elemento de imagen estática
-const video3 = document.getElementById("image")
+const imagen_estatica = document.getElementById("image")
+video3.width=200;  //-- Tamaño de la pantalla de video
+video3.height=100;
 
 //-- Imagen estática a mostrar cuando el video no
 //-- ha arrancado
@@ -31,59 +33,115 @@ video3.poster="https://github.com/myTeachingURJC/2019-2020-CSAAI/raw/master/L10/
 
 //-- Obtener los botones
 const selector1 = document.getElementById("selector1")
-const stop1 = document.getElementById("stop1")
 const selector2 = document.getElementById("selector2")
-const stop2 = document.getElementById("stop2")
 const selector3 = document.getElementById("selector3")
-const stop3 = document.getElementById("stop3")
+const selector_imagen = document.getElementById("selector_imagen")
+const manual = document.getElementById("manual")
+const automatico = document.getElementById("automatico")
+const bucle = document.getElementById("bucle")
 
-//-- Función de retrollamada del botón de ver
+//-- Estados del realizador de video
+const ESTADO = {
+  MANUAL: 0,
+  AUTOMATICO: 1,
+  BUCLE: 2,
+}
+
+let estado = ESTADO.MANUAL;
+var bucle_2s;
+var bucle_infinito;
+//-- Función de retrollamada del botón de selector 1
 selector1.onclick = () => {
-  console.log("Click!");
-  video1.src="https://gsyc.urjc.es/jmplaza/csaai/realizador-fuente1.mp4"
-  video_pgm.src = video1.src
-  video1.play();
-  video_pgm.play();
+  if (estado == ESTADO.MANUAL){
+    console.log("Click!");
+    video_pgm.poster = null;
+    video1.src="https://gsyc.urjc.es/jmplaza/csaai/realizador-fuente1.mp4"
+    video_pgm.src = video1.src
+    video1.play();
+    video_pgm.play();
+  } else if (estado == ESTADO.BUCLE) {
+      clearInterval(bucle_2s)
+      bucle_2s = setInterval(function(){
+        video1.src="https://gsyc.urjc.es/jmplaza/csaai/realizador-fuente1.mp4"
+        video_pgm.src = video1.src
+        video_pgm.play();
+      },2000);
+  }
 };
-//-- Función de retrollamada del botón de ver
+//-- Función de retrollamada del botón de selector 2
 selector2.onclick = () => {
-  console.log("Click!");
-  video2.src="https://gsyc.urjc.es/jmplaza/csaai/realizador-fuente2.mp4"
-  video_pgm.src = video2.src
-  video2.play();
-  video_pgm.play();
+  if (estado == ESTADO.MANUAL){
+    console.log("Click!");
+    video_pgm.poster = null;
+    video2.src="https://gsyc.urjc.es/jmplaza/csaai/realizador-fuente2.mp4"
+    video_pgm.src = video2.src
+    video2.play();
+    video_pgm.play();
+  } else if (estado == ESTADO.BUCLE) {
+      clearInterval(bucle_2s)
+      bucle_2s = setInterval(function(){
+        video2.src="https://gsyc.urjc.es/jmplaza/csaai/realizador-fuente2.mp4"
+        video_pgm.src = video2.src
+        video_pgm.play();
+      },2000);
+  }
 };
 
-//-- Función de retrollamada del botón de ver
+//-- Función de retrollamada del botón de selector 3
 selector3.onclick = () => {
-  console.log("Click!");
-  video3.src="https://gsyc.urjc.es/jmplaza/csaai/realizador-fuente3.mp4"
-  video_pgm.src = video3.src
-  video3.play();
-  video_pgm.play();
+  if (estado == ESTADO.MANUAL){
+    console.log("Click!");
+    video_pgm.poster = null;
+    video3.src="https://gsyc.urjc.es/jmplaza/csaai/realizador-fuente3.mp4"
+    video_pgm.src = video3.src
+    video3.play();
+    video_pgm.play();
+  } else if (estado == ESTADO.BUCLE) {
+      clearInterval(bucle_2s)
+      bucle_2s = setInterval(function(){
+        video3.src="https://gsyc.urjc.es/jmplaza/csaai/realizador-fuente3.mp4"
+        video_pgm.src = video3.src
+        video_pgm.play();
+      },2000);
+  }
 };
 
+//-- Función de retrollamada del botón de selector imagen estática
+selector_imagen.onclick = () => {
+  if (estado == ESTADO.MANUAL){
+    console.log("Click!");
+    video_pgm.poster=imagen_estatica.src;
+    video_pgm.src = null;
+  }
+};
 
-//-- Funcion de retrollamada del boton de parar
-stop1.onclick = () => {
-  video1.pause();
-  //-- Quitar la fuente de video, para que se muestre la
-  //-- imagen definida en el atributo poster
-  video1.src=null;
+//-- Funcion para el modo automatico, que cambie de fuente de video continuamente
+var n=1
+function video_sources_loop(){
+  video_pgm.src = "https://gsyc.urjc.es/jmplaza/csaai/realizador-fuente"+ n +".mp4";
+  video_pgm.play()
+  if (n==3){
+    n=1;
+  } else{
+    n++
+  }
+}
+//-- Funcion de modo AUTOMATICO
+automatico.onclick = () =>{
+  estado = ESTADO.AUTOMATICO;
+  clearInterval(bucle_2s)
+  video_pgm.poster = null;
+  bucle_infinito = setInterval(video_sources_loop, 3000);
 }
 
-//-- Funcion de retrollamada del boton de parar
-stop2.onclick = () => {
-  video2.pause();
-  //-- Quitar la fuente de video, para que se muestre la
-  //-- imagen definida en el atributo poster
-  video1.src=null;
+//-- Funcion de modo MANUAL
+manual.onclick = () =>{
+  estado = ESTADO.MANUAL;
+  clearInterval(bucle_infinito)
 }
 
-//-- Funcion de retrollamada del boton de parar
-stop3.onclick = () => {
-  video3.pause();
-  //-- Quitar la fuente de video, para que se muestre la
-  //-- imagen definida en el atributo poster
-  video1.src=null;
+//-- Funcion de modo BUCLE
+bucle.onclick = () =>{
+  estado = ESTADO.BUCLE;
+  clearInterval(bucle_infinito)
 }

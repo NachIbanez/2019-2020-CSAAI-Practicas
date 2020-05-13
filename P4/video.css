@@ -1,12 +1,17 @@
+body {
+  background-image: url("fondo_negro.jpg");
+  border: solid;
+  border-color: orange;
+}
+
 .fuente {
-  border: 10px outset red;
   background-color: lightblue;
   text-align: center;
-  display: inline-block;
+  margin: 25px;
 }
 
 .PGM {
-  border: 10px outset red;
   background-color: lightgreen;
   text-align: center;
+  margin: 0px;
 }
