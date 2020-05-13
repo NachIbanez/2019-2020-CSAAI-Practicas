@@ -1,0 +1,12 @@
+.fuente {
+  border: 10px outset red;
+  background-color: lightblue;
+  text-align: center;
+  display: inline-block;
+}
+
+.PGM {
+  border: 10px outset red;
+  background-color: lightgreen;
+  text-align: center;
+}

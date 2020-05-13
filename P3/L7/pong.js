@@ -13,6 +13,8 @@ const ctx = canvas.getContext("2d");
 //-- Variables para la bola
 let bola_x = 50;
 let bola_vx = 0;
+let bola_y = 200;
+let bola_vy = 0;
 
 //-- Pintar todos los objetos en el canvas
 function draw() {
@@ -22,7 +24,7 @@ function draw() {
   ctx.fillStyle='red';
 
   //-- x,y, anchura, altura
-  ctx.rect(bola_x, 200, 10, 10);
+  ctx.rect(bola_x, bola_y, 10, 10);
   ctx.fill();
 
   //------- Dibujar las raquetas
@@ -70,14 +72,19 @@ function animacion()
   //-- Comprobar si la bola ha alcanzado el límite derecho
   //-- Si es así, se cambia de signo la velocidad, para
   // que "rebote" y vaya en el sentido opuesto
-  if (bola_x >= canvas.width || bola_x == 0) {
+  if (bola_x >= canvas.width || bola_x <= 0) {
     //-- Hay colisión. Cambiar el signo de la bola
     bola_vx = bola_vx * -1;
+  }
+  if (bola_y >= canvas.height || bola_y <= 0) {
+    //-- Hay colisión. Cambiar el signo de la bola
+    bola_vy = bola_vy * -1;
   }
 
   //-- Actualizar coordenada x de la bola, en funcion de
   //-- su velocidad
   bola_x += bola_vx;
+  bola_y += bola_vy;
 
   //-- Borrar la pantalla
   ctx.clearRect(0,0, canvas.width, canvas.height);
@@ -93,6 +100,8 @@ setInterval(()=>{
 
 //-- Obtener el boton de saque
 const sacar = document.getElementById("sacar");
+const pausa = document.getElementById("pausa");
+
 
 //-- Botón de saque:
 //-- Dar a la bola una velocidad inicial
@@ -100,5 +109,20 @@ const sacar = document.getElementById("sacar");
 sacar.onclick = () => {
   bola_x = 50;
   bola_vx = 6;
+  bola_y = 20;
+  bola_vy = 6;
   console.log("Saque!");
+}
+
+pausa.onclick = () => {
+  if (bola_vx != 0){
+    bola_vx_anterior = bola_vx;
+    bola_vy_anterior = bola_vy;
+    bola_vx = 0;
+    bola_vy = 0;
+    console.log("Saque!");
+  } else {
+    bola_vx = bola_vx_anterior;
+    bola_vy = bola_vy_anterior;
+  }
 }
