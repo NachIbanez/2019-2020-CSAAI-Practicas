@@ -138,10 +138,12 @@ automatico.onclick = () =>{
 manual.onclick = () =>{
   estado = ESTADO.MANUAL;
   clearInterval(bucle_infinito)
+  clearInterval(bucle_2s)
 }
 
 //-- Funcion de modo BUCLE
 bucle.onclick = () =>{
   estado = ESTADO.BUCLE;
   clearInterval(bucle_infinito)
+  clearInterval(bucle_2s)
 }
