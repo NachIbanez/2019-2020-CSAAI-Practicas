@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Filtro 5</title>
+    <link rel="stylesheet" href="filtro.css">
+    <script src="filtro.js" defer></script>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+    <img src="FPGA.jpg" id="imagesrc">
+    <div class="barra">
+      <p>Establece el umbral de rojo:</p>
+      <input type="range" id="deslizador_rojo" min="0" max="255" value="255">
+      <p id="range_value_rojo">255</p>
+    </div>
+
+    <div class="barra">
+      <p>Establece el umbral de verde:</p>
+      <input type="range" id="deslizador_verde" min="0" max="255" value="255">
+      <p id="range_value_verde">255</p>
+    </div>
+
+    <div class="barra">
+      <p>Establece el umbral de azul:</p>
+      <input type="range" id="deslizador_azul" min="0" max="255" value="255">
+      <p id="range_value_azul">255</p>
+    </div>
+
+  </body>
+</html>
