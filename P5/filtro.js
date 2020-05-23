@@ -18,8 +18,7 @@ const range_value_azul = document.getElementById('range_value_azul');
 //-- Botones para cambiar de filtros
 const colores = document.getElementById('colores');
 const grises = document.getElementById('grises');
-const espejo = document.getElementById('espejo');
-
+const espejo_horizontal = document.getElementById('espejo_horizontal');
 
 //-- Estados del procesador de imagen
 const ESTADO = {
@@ -51,7 +50,7 @@ img.onload = function () {
 //-- Funcion a la que accederemos cada vez que movamos uno de los tres deslizadores de color.
 //-- Así guardamos el último estado de los píxeles y podemos trabajar sobre ese y no la imagen inicial.
 function barras_color() {
-  if (estado == ESTADO.COLORES){
+  if (estado != ESTADO.GRISES){
     //-- Mostrar el nuevo valor del deslizador
     range_value_rojo.innerHTML = deslizador_rojo.value;
     range_value_verde.innerHTML = deslizador_verde.value;
@@ -106,8 +105,8 @@ deslizador_azul.oninput = () => {
 
 colores.onclick = () => {
   estado = ESTADO.COLORES;
+  barras_color()
 }
-
 
 grises.onclick = () => {
 
@@ -131,7 +130,7 @@ grises.onclick = () => {
     ctx.putImageData(imgData, 0, 0);
 }
 
-espejo.onclick = () => {
+espejo_horizontal.onclick = () => {
 
   estado = ESTADO.ESPEJO;
   ctx.drawImage(img, 0,0);

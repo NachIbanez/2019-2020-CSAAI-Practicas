@@ -52,6 +52,13 @@ var bucle_2s;
 var bucle_infinito;
 //-- Función de retrollamada del botón de selector 1
 selector1.onclick = () => {
+  //-- Añadimos borde rojo a la fuente actual
+  video1.className = "selector";
+  video2.className = "";
+  video3.className = "";
+  //-- Muteamos las dos fuentes que no sean la actual
+  video2.muted = true;
+  video3.muted = true;
   if (estado == ESTADO.MANUAL){
     console.log("Click!");
     video_pgm.poster = null;
@@ -70,6 +77,13 @@ selector1.onclick = () => {
 };
 //-- Función de retrollamada del botón de selector 2
 selector2.onclick = () => {
+  //-- Añadimos borde rojo a la fuente actual
+  video2.className = "selector";
+  video1.className = "";
+  video3.className = "";
+  //-- Muteamos las dos fuentes que no sean la actual
+  video1.muted = true;
+  video3.muted = true;
   if (estado == ESTADO.MANUAL){
     console.log("Click!");
     video_pgm.poster = null;
@@ -89,6 +103,13 @@ selector2.onclick = () => {
 
 //-- Función de retrollamada del botón de selector 3
 selector3.onclick = () => {
+  //-- Añadimos borde rojo a la fuente actual
+  video3.className = "selector";
+  video2.className = "";
+  video1.className = "";
+  //-- Muteamos las dos fuentes que no sean la actual
+  video1.muted = true;
+  video2.muted = true;
   if (estado == ESTADO.MANUAL){
     console.log("Click!");
     video_pgm.poster = null;
@@ -109,6 +130,14 @@ selector3.onclick = () => {
 //-- Función de retrollamada del botón de selector imagen estática
 selector_imagen.onclick = () => {
   if (estado == ESTADO.MANUAL){
+    //-- Quitamos todos los bordes rojos y muteamos la fuentes de entrada
+    video1.className = "";
+    video2.className = "";
+    video3.className = "";
+    video1.muted = true;
+    video2.muted = true;
+    video3.muted = true;
+
     console.log("Click!");
     video_pgm.poster=imagen_estatica.src;
     video_pgm.src = null;
