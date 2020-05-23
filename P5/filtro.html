@@ -7,24 +7,34 @@
     <script src="filtro.js" defer></script>
   </head>
   <body>
-    <canvas id="canvas"></canvas>
-    <img src="FPGA.jpg" id="imagesrc">
+    <h3 class=texto align=center>IMAGEN ORIGINAL ---- IMAGEN MODIFICADA</h3>
+
+    <div class=images align=center>
+      <img src="FPGA.jpg" id="imagesrc">
+      <img src="FPGA.jpg" id="imageorg">
+      <canvas id="canvas"></canvas>
+    </div>
+
     <div class="barra">
-      <p>Establece el umbral de rojo:</p>
+      <p>Establece el umbral de rojo</p>
       <input type="range" id="deslizador_rojo" min="0" max="255" value="255">
       <p id="range_value_rojo">255</p>
-    </div>
 
-    <div class="barra">
-      <p>Establece el umbral de verde:</p>
+
+      <p>Establece el umbral de verde</p>
       <input type="range" id="deslizador_verde" min="0" max="255" value="255">
       <p id="range_value_verde">255</p>
-    </div>
 
-    <div class="barra">
-      <p>Establece el umbral de azul:</p>
+
+      <p>Establece el umbral de azul</p>
       <input type="range" id="deslizador_azul" min="0" max="255" value="255">
       <p id="range_value_azul">255</p>
+    </div>
+
+    <div class="botones" d>
+      <button type="button" id="colores">COLORES</button>
+      <button type="button" id="grises">ESCALA DE GRISES</button>
+      <button type="button" id="espejo">ESPEJO</button>
     </div>
 
   </body>

@@ -2,14 +2,20 @@ body{
   background-color: gray;
 }
 
-#imagesrc {
-  display:none;
-  display:inline-block;
+.barra {
+  background-color: lightgreen;
+  text-align: center;
+  margin: 0px;
 }
 
-.barra {
-  background-color: lightblue;
-  text-align: center;
-  margin: 25px;
+.texto{
+  text-indent:15px;
+}
+
+#imagesrc {
+  display:none;
+}
+
+#imageorg {
   display:inline-block;
 }
